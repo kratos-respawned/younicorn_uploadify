@@ -1,14 +1,11 @@
 {
   "name": "younicorn_uploadify",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "an npm package for uploading files using uploadify",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "module": "dist/index.mjs",
-  "type": "module",
   "scripts": {
-    "build": "tsup src/ --format cjs,esm --dts",
-    "lint": "tsc ",
+    "build": "tsc",
     "prepare": "npm run build"
   },
   "repository": {
@@ -22,8 +19,6 @@
   },
   "homepage": "https://github.com/kratos-respawned/younicorn_uploadify#readme",
   "devDependencies": {
-    "@changesets/cli": "^2.26.2",
-    "tsup": "^7.2.0",
     "typescript": "^5.2.2"
   },
   "dependencies": {
