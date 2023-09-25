@@ -8,8 +8,8 @@ const instance = axios.create({
 });
 export default class Uploadify {
   private _KEY: string;
-  private _SECRET: number;
-  constructor(API_KEY: string, API_SECRET: number) {
+  private _SECRET: string;
+  constructor(API_KEY: string, API_SECRET: string) {
     if (!API_KEY || !API_SECRET) throw new Error("key and value are required");
     this._KEY = API_KEY;
     this._SECRET = API_SECRET;
