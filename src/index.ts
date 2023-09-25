@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 interface Response {
   url: string;
-  name: string;
+  fileName: string;
 }
 const instance = axios.create({
   baseURL: "https://upload.itsgaurav.co/api",
