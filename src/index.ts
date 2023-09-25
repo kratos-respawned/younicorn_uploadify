@@ -1,4 +1,8 @@
-import axios, { AxiosError } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
+interface Response {
+  url: string;
+  name: string;
+}
 const instance = axios.create({
   baseURL: "https://upload.itsgaurav.co/api",
 });
@@ -22,7 +26,10 @@ export default class Uploadify {
         "Authorization"
       ] = `Bearer ${this._SECRET}`;
       instance.defaults.headers.common["Content-Type"] = "multipart/form-data";
-      const resp = await instance.post("/upload", reader);
+      const resp: AxiosResponse<Response> = await instance.post(
+        "/upload",
+        reader
+      );
       if (resp.status !== 200) throw new Error("something went wrong");
       return resp.data;
     } catch (error) {
