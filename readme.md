@@ -34,7 +34,7 @@ Creates a new instance of the `uploadify` class.
 - `API_KEY` - Your Uploadify API key.
 - `SECRET` - Your Uploadify API secret.
 
-### `uploadFile(file)`
+### `upload(file)`
 
 Uploads a file to the cloud.
 
