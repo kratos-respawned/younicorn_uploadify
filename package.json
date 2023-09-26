@@ -1,5 +1,5 @@
 {
-  "name": "@younicorn/uploadify",
+  "name": "younicorn_uploadify",
   "version": "0.1.2",
   "description": "an npm package for uploading files using uploadify",
   "main": "dist/index.js",

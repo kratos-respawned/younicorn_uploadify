@@ -10,14 +10,14 @@ Uploadify is an npm package that allows you to easily upload files to the cloud.
     API_KEY=your_api_key_here
     SECRET=your_secret_here
     ```
-3. Install the `@younicorn/uploadify` package:
+3. Install the `younicorn_uploadify` package:
     ```
-    npm install @younicorn/uploadify
+    npm install younicorn_uploadify
 
     ```
 4. Create an instance of the `uploadify` class:
     ```
-    import uploadify from "@younicorn/uploadify"
+    import uploadify from "younicorn_uploadify"
     const instance = new uploadify(API_KEY, SECRET)
     ```
 5. Use the `uploadFile` method to upload a file:
