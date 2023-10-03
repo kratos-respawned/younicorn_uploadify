@@ -27,29 +27,41 @@ export default class Uploadify {
    * Uploads a file to the server.
    * @async
    * @param {File} file - The file to upload.
-   * @returns {Promise<[Response | null, string | null]>} A promise that resolves to a tuple containing the response and error, if any.
+   * @returns {Promise<{response: Response, error: null} | {response: null, error: string}>} A promise that resolves to a tuple containing the response and error, if any.
    * @memberof Uploadify
    */
-  async upload(file: File): Promise<[Response | null, string | null]> {
-    if (!file) return [null, "file is required"];
+  async upload(file: File): Promise<
+    | {
+        response: Response;
+        error: null;
+      }
+    | {
+        response: null;
+        error: string;
+      }
+  > {
+    if (!file) return { response: null, error: "file is required" };
     if (file instanceof File === false)
-      return [null, "file must be an instance of File"];
+      return { response: null, error: "file must be an instance of File" };
+    if (file.size > 1024 * 1024 * 10)
+      return { response: null, error: "file size must be less than 10MB" };
     const reader = new FormData();
     reader.append("file", file);
     reader.append("key", this._KEY);
     try {
-      instance.defaults.headers.common["Authorization"]=this._SECRET;
+      instance.defaults.headers.common["Authorization"] = this._SECRET;
       const resp: AxiosResponse<Response> = await instance.post(
         "/upload",
         reader
       );
-      if (resp.status !== 200) return [null, "Something went wrong"];
-      return [resp.data, null];
+      if (resp.status !== 200)
+        return { response: null, error: "Something went wrong" };
+      return { response: resp.data, error: null };
     } catch (error) {
       if (error instanceof AxiosError) {
-        return [null, error.response?.data];
+        return { response: null, error: error.response?.data };
       } else {
-        return [null, "Internal Server Error"];
+        return { response: null, error: "Internal Server Error" };
       }
     }
   }
