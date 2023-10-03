@@ -38,10 +38,7 @@ export default class Uploadify {
     reader.append("file", file);
     reader.append("key", this._KEY);
     try {
-      instance.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer ${this._SECRET}`;
-      instance.defaults.headers.common["Content-Type"] = "multipart/form-data";
+      instance.defaults.headers.common["Authorization"]=this._SECRET;
       const resp: AxiosResponse<Response> = await instance.post(
         "/upload",
         reader
