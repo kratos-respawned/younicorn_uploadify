@@ -1,8 +1,14 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-interface Response {
+type Response = {
   url: string;
   fileName: string;
-}
+};
+type Error = {
+  message: {
+    error: string;
+  }
+};
+
 const instance = axios.create({
   baseURL: "https://upload.itsgaurav.co/api",
 });
@@ -54,12 +60,17 @@ export default class Uploadify {
         "/upload",
         reader
       );
-      if (resp.status !== 200)
-        return { response: null, error: "Something went wrong" };
-      return { response: resp.data, error: null };
+      return {
+        response: {
+          url: resp.data.url,
+          fileName: resp.data.fileName,
+        },
+        error: null,
+      };
     } catch (error) {
       if (error instanceof AxiosError) {
-        return { response: null, error: error.response?.data };
+        const Error = error as AxiosError<Error>;
+        return { response: null, error:  Error.response?.data.message.error || "Error" };
       } else {
         return { response: null, error: "Internal Server Error" };
       }
