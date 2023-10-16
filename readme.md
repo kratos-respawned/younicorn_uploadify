@@ -24,7 +24,7 @@ Uploadify is an npm package that allows you to easily upload files to the cloud.
    ```
 5. Use the `upload` method to upload a file:
    ```
-   const [data, error] = await instance.upload(file)
+   const {response, error} = await instance.upload(file)
    ```
 
 ## API
@@ -42,9 +42,17 @@ Uploads a file to the cloud.
 
 - `file` - The file to upload.
 
-Returns an array containing the uploaded file's data and any errors that occurred during the upload.
+Returns an object containing the uploaded file's data and any errors that occurred during the upload.
 
-- `data` - The uploaded file's data.
+- `response` - The uploaded file's data.
+
+  ```
+  response={
+   url: string;
+   fileName: string;
+  }
+  ```
+
 - `error` - Any errors that occurred during the upload.
 
 ## License

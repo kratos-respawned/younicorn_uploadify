@@ -1,6 +1,6 @@
 {
   "name": "younicorn_uploadify",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "an npm package for uploading files using uploadify",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
